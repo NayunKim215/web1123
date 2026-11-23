@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>스트링 입체도형 DIY 교구 설명서</title>
+<style>
+
+@page {
+    size: A4 portrait;
+    margin: 8mm 11mm 8mm 11mm;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', '맑은 고딕', sans-serif;
+    color: #1e293b;
+    margin: 0;
+    padding: 0;
+    line-height: 1.45;
+    background-color: #ffffff;
+    font-size: 11.5px;
+}
+
+.page {
+    width: 100%;
+    page-break-after: always;
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+}
+
+.page:last-child {
+    page-break-after: avoid;
+}
+
+/* Header & Footer */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+}
+
+.header-left {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.header-right {
+    font-size: 10.5px;
+    color: #64748b;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 5px;
+    font-size: 10px;
+    color: #94a3b8;
+}
+
+/* Hero Banner */
+.hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #3b82f6 100%);
+    border-radius: 10px;
+    padding: 16px 20px;
+    color: #ffffff;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+}
+
+.badge-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.badge-orange {
+    background: #f97316;
+    color: #ffffff;
+}
+
+.hero h1 {
+    font-size: 19px;
+    font-weight: 800;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+}
+
+.hero p {
+    margin: 0;
+    font-size: 11.5px;
+    color: #dbeafe;
+    line-height: 1.4;
+}
+
+/* Video Meta Card */
+.video-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.video-thumb {
+    width: 55px;
+    height: 55px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid #cbd5e1;
+}
+
+.video-info {
+    flex: 1;
+}
+
+.video-title {
+    font-weight: 700;
+    font-size: 12px;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.video-sub {
+    font-size: 10.5px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.video-sub span {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+/* Section Headings */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 12px 0 8px 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.section-num {
+    background: #2563eb;
+    color: white;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10.5px;
+    font-weight: 700;
+}
+
+/* 2-Column Grid Layout */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.card-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tag {
+    font-size: 9.5px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.tag-blue { background: #eff6ff; color: #2563eb; }
+.tag-purple { background: #f5f3ff; color: #7c3aed; }
+.tag-green { background: #ecfdf5; color: #059669; }
+.tag-pink { background: #fdf2f8; color: #db2777; }
+
+/* Image Comparison */
+.img-compare {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.img-box {
+    flex: 1;
+    text-align: center;
+    background: #f8fafc;
+    border-radius: 6px;
+    padding: 4px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.img-box img {
+    max-width: 100%;
+    height: 118px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.img-caption {
+    font-size: 9.5px;
+    color: #64748b;
+    margin-top: 3px;
+    font-weight: 600;
+}
+
+/* Description Lists inside cards */
+.desc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.desc-list li {
+    position: relative;
+    padding-left: 11px;
+    margin-bottom: 3px;
+    color: #334155;
+}
+
+.desc-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #3b82f6;
+    font-weight: bold;
+}
+
+.desc-list strong {
+    color: #0f172a;
+}
+
+/* Highlight box */
+.highlight-box {
+    background: #eff6ff;
+    border-left: 3.5px solid #2563eb;
+    border-radius: 6px;
+    padding: 8px 11px;
+    margin: 8px 0;
+    font-size: 11px;
+    line-height: 1.45;
+    color: #1e3a8a;
+}
+
+.highlight-box strong {
+    color: #1d4ed8;
+}
+
+.transcript-quote {
+    background: #fdf4ff;
+    border-left: 3.5px solid #c026d3;
+    border-radius: 6px;
+    padding: 7px 11px;
+    margin: 8px 0;
+    font-size: 11px;
+    color: #701a75;
+    line-height: 1.45;
+}
+
+/* DIY Step Grid */
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.step-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
+    padding: 8px;
+    text-align: center;
+}
+
+.step-num {
+    background: #2563eb;
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10.5px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.step-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 3px;
+}
+
+.step-text {
+    font-size: 10px;
+    color: #64748b;
+    line-height: 1.35;
+    text-align: left;
+}
+
+/* Table styling */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+    font-size: 11px;
+}
+
+.custom-table th {
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 700;
+    padding: 6px 9px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+.custom-table td {
+    padding: 6px 9px;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.key-point {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 10px;
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: 개요 및 교구 메커니즘 -->
+<div class="page">
+    <div class="header">
+        <div class="header-left">STEM 창의수학 DIY 교구 매뉴얼</div>
+        <div class="header-right">YouTube Shorts: BmUZ8yaFT3I 심층 분석</div>
+    </div>
+
+    <div class="hero">
+        <div class="badge-row">
+            <span class="badge badge-orange">★ 초등 도형 완벽 정복</span>
+            <span class="badge">#입체도형DIY</span>
+            <span class="badge">#초등준비</span>
+            <span class="badge">#공간지각력</span>
+        </div>
+        <h1>잡아당기면 솟아나는 스트링 입체도형 DIY 설명서</h1>
+        <p>2D 평면 전개도에서 줄을 당기면 3D 입체도형으로 마법처럼 변하는 '풀 스트링(Pull-String) 팝업 교구'의 원리 및 제작 가이드</p>
+    </div>
+
+    <div class="video-card">
+        <img class="video-thumb" src="pdf_images/intro.jpg" alt="영상 썸네일">
+        <div class="video-info">
+            <div class="video-title">영상 출처: 요즘 엄마들이 찾는 신기한 도형 교구입니다</div>
+            <div class="video-sub">
+                게시 채널: <span>anyhomepick</span> (원작 디자인: <span>@moonshotkidz</span>) | 영상 시간: <span>21초</span> | 유튜브 쇼츠
+            </div>
+        </div>
+    </div>
+
+    <div class="transcript-quote">
+        <strong>🎬 영상 내레이션 / 자막 전문:</strong><br>
+        "도형 알려 줄 때 입체 차이를 아무리 설명해도 어렵잖아요. 그런데 이건 살짝 잡아당기면 순식간에 변하는 교구입니다. 도형이 펼쳐지고 모양이 바뀌니까 아이도 신기한지 보더라고요. 외우는 게 아니라 직접 움직이면서 도형의 구조를 놀이처럼 즐기다 보니 자연스럽게 (공간 감각을) 키울 수 있겠더라고요."
+    </div>
+
+    <div class="section-title">
+        <span class="section-num">1</span>
+        <span>풀 스트링(Pull-String) 팝업 교구의 교육적 가치</span>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">
+                <span>기존 평면 학습의 문제점</span>
+                <span class="tag tag-pink">한계점</span>
+            </div>
+            <ul class="desc-list">
+                <li><strong>교과서 2D 그림의 한계:</strong> 초등 5~6학년 수학에서 배우는 직육면체, 각기둥, 각뿔 전개도는 종이 위에 평면으로만 인쇄되어 머릿속으로 접힌 입체를 시각화하기가 매우 어렵습니다.</li>
+                <li><strong>단순 암기식 접근의 부작용:</strong> "마주 보는 면은 합동", "밑면은 2개" 같은 규칙을 암기식으로 배우면 변형된 전개도 문제에서 심각한 혼란을 겪습니다.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-title">
+                <span>스트링 팝업 교구의 특장점</span>
+                <span class="tag tag-green">해결책</span>
+            </div>
+            <ul class="desc-list">
+                <li><strong>완벽한 2D ↔ 3D 상호 변환:</strong> 평면 전개도에서 실을 가볍게 잡아당기면 모든 면이 동시에 접히며 3초 만에 3차원 입체도형으로 일어섭니다.</li>
+                <li><strong>신체 감각(Kinesthetic) 체득:</strong> 손으로 줄을 당겼다 풀며 어떤 모서리가 맞닿고 어떤 면이 마주 보는지 놀이하듯 감각적으로 이해하게 됩니다.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <strong>⚙️ 스트링 텐션 팝업(String Tension Pop-Up)의 3대 핵심 원리:</strong><br>
+        1. <strong>힌지 접힘선(Hinge Scored Line):</strong> 전개도의 모든 접는 선에 정밀한 칼선(자국)을 내어 자연스럽게 꺾이도록 설계합니다.<br>
+        2. <strong>꼭짓점/모서리 타공(Eyelet Holes):</strong> 서로 결합될 모서리 끝점이나 꼭짓점 위치에 펀칭 구멍을 뚫습니다.<br>
+        3. <strong>스트링 관통(String Lacing):</strong> 하나의 실을 대각선 또는 루프로 관통시켜, 끈을 당길 때 장력(Tension)이 모든 면을 중심축으로 한 번에 수렴시킵니다.
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 8px;">
+        <div style="flex: 1; text-align: center; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 5px; display: flex; flex-direction: column; align-items: center;">
+            <img src="pdf_images/intro.jpg" style="max-width: 100%; height: 120px; object-fit: contain; border-radius: 5px;" alt="도형 교구 시작">
+            <div class="img-caption">▲ 영상 오프닝: 평면 종이에 실을 꿰어 준비한 모습</div>
+        </div>
+        <div style="flex: 1; text-align: center; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 5px; display: flex; flex-direction: column; align-items: center;">
+            <img src="pdf_images/hex_prism.jpg" style="max-width: 100%; height: 120px; object-fit: contain; border-radius: 5px;" alt="육각기둥 완성">
+            <div class="img-caption">▲ 실을 당기자 순식간에 3D 육각기둥으로 솟아오른 모습</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>스트링 입체도형 DIY 가이드 | c:\work1123\도형교구_설명서.pdf</div>
+        <div>Page 1 of 4</div>
+    </div>
+</div>
+
+<!-- PAGE 2: 도형별 심층 분석 (정육면체, 직육면체) -->
+<div class="page">
+    <div class="header">
+        <div class="header-left">도형별 구조 및 전개도 분석 I</div>
+        <div class="header-right">정육면체 & 직육면체</div>
+    </div>
+
+    <div class="section-title">
+        <span class="section-num">2</span>
+        <span>핵심 다면체 1: 정육면체 (Cube / Regular Hexahedron)</span>
+    </div>
+
+    <div class="card" style="margin-bottom: 12px;">
+        <div class="card-title">
+            <span>정육면체 풀 스트링 전개도 분석</span>
+            <span class="tag tag-purple">초등 5-2 직육면체 단원</span>
+        </div>
+        <div class="img-compare">
+            <div class="img-box">
+                <img src="pdf_images/cube_net.jpg" alt="정육면체 전개도">
+                <div class="img-caption">▲ [펼친 상태] 2-3-1 계단형 전개도와 대각선 실 꿰기</div>
+            </div>
+            <div class="img-box">
+                <img src="pdf_images/cube_done.jpg" alt="정육면체 조립">
+                <div class="img-caption">▲ [당긴 상태] PULL 끈을 당겨 정육면체로 닫히는 순간</div>
+            </div>
+        </div>
+        <ul class="desc-list">
+            <li><strong>전개도 구조:</strong> 6개의 정사각형이 계단 형태로 연결된 '2-3-1형' 전개도를 사용합니다.</li>
+            <li><strong>스트링 꿰는 경로:</strong> 실이 각 정사각형의 모퉁이 구멍을 지그재그 대각선 방향으로 관통하며 연결됩니다. 하단으로 나온 두 가닥에 'PULL' 손잡이를 부착합니다.</li>
+            <li><strong>변환 메커니즘:</strong> 하단의 실을 잡아당기면 대각선 장력에 의해 가장 먼 위쪽 면부터 차례대로 안쪽으로 90도씩 꺾여 올라오며 완벽한 정육면체 상자가 조립됩니다.</li>
+            <li><strong>수학적 배움 포인트:</strong> 마주 보는 세 쌍의 면이 평행을 이루고, 만나는 모서리의 길이가 서로 같음을 눈으로 직접 확인할 수 있습니다.</li>
+        </ul>
+    </div>
+
+    <div class="section-title">
+        <span class="section-num">3</span>
+        <span>핵심 다면체 2: 직육면체 (Rectangular Prism)</span>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span>직육면체 풀 스트링 전개도 분석</span>
+            <span class="tag tag-green">초등 5-2 직육면체 단원</span>
+        </div>
+        <div class="img-compare">
+            <div class="img-box">
+                <img src="pdf_images/rect_prism_net.jpg" alt="직육면체 전개도">
+                <div class="img-caption">▲ [펼친 상태] 십자형 직육면체 전개도와 실 결선 배치</div>
+            </div>
+            <div class="img-box">
+                <img src="pdf_images/rect_prism_box.jpg" alt="직육면체 완성">
+                <div class="img-caption">▲ [당긴 상태] 끈을 당겨 깔끔한 직육면체 상자로 완성</div>
+            </div>
+        </div>
+        <ul class="desc-list">
+            <li><strong>전개도 구조:</strong> 중앙 세로축에 4개의 직사각형 면과 좌우 양옆으로 날개처럼 펼쳐진 2개의 직사각형 면으로 이루어진 표준 십자형 전개도입니다.</li>
+            <li><strong>스트링 꿰는 경로:</strong> 좌우 날개 끝 모서리와 상단 끝단에 구멍을 뚫고, 두 줄의 스트링을 V자형으로 교차 엮어 하단 중앙으로 뽑아냅니다.</li>
+            <li><strong>변환 메커니즘:</strong> 줄을 아래로 잡아당기면 좌우 날개 면이 먼저 90도 직각으로 일어서고, 뒤이어 상단 덮개 면이 덮이며 견고한 상자가 닫힙니다.</li>
+            <li><strong>수학적 배움 포인트:</strong> 직육면체에서 서로 마주 보는 세 쌍의 면이 각각 모양과 크기가 합동이라는 핵심 성질을 직관적으로 확인합니다.</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <div>스트링 입체도형 DIY 가이드 | c:\work1123\도형교구_설명서.pdf</div>
+        <div>Page 2 of 4</div>
+    </div>
+</div>
+
+<!-- PAGE 3: 도형별 심층 분석 (원기둥, 육각뿔, 삼각뿔) -->
+<div class="page">
+    <div class="header">
+        <div class="header-left">도형별 구조 및 전개도 분석 II</div>
+        <div class="header-right">원기둥, 육각뿔 & 삼각뿔</div>
+    </div>
+
+    <div class="section-title">
+        <span class="section-num">4</span>
+        <span>곡면 입체: 원기둥 (Cylinder) 실측 도면 및 작동 원리</span>
+    </div>
+
+    <div class="card" style="margin-bottom: 12px;">
+        <div class="card-title">
+            <span>원기둥 전개도 규격 및 실 엮기 메커니즘</span>
+            <span class="tag tag-pink">초등 6-2 원기둥 단원</span>
+        </div>
+        <div class="img-compare">
+            <div class="img-box">
+                <img src="pdf_images/cylinder_net.jpg" alt="원기둥 상세 전개도">
+                <div class="img-caption">▲ [실제 치수 도면] 가로 18cm × 세로 9cm 직사각형 + 반지름 2.5cm 원 2개</div>
+            </div>
+            <div class="img-box">
+                <img src="pdf_images/cylinder_done.jpg" alt="원기둥 완성">
+                <div class="img-caption">▲ [당긴 상태] 실을 당겨 둥글게 말리며 상하 밑면이 닫힌 모습</div>
+            </div>
+        </div>
+        <ul class="desc-list">
+            <li><strong>영상 속 실제 작도 치수:</strong>
+                <br>• 옆면 직사각형: <strong>가로 18cm, 세로(높이) 9cm</strong>
+                <br>• 밑면 원: <strong>반지름 2.5cm</strong> (지름 5cm, 원주 약 2 × 3.14 × 2.5 = 15.7cm + 접합 여유분)
+            </li>
+            <li><strong>스트링 꿰는 법 (코르셋/신발끈 방식):</strong>
+                <br>• 직사각형의 양쪽 세로 모서리에 상단, 중단, 하단에 펀칭 구멍을 뚫고 지그재그로 끈을 욉니다.
+                <br>• 위아래 원형 밑면의 끝점에도 구멍을 뚫어 끈을 통과시켜 동시에 당겨지게 만듭니다.
+            </li>
+            <li><strong>변환 메커니즘:</strong> 끈을 당기면 평평했던 직사각형 옆면이 둥근 곡면으로 휘어지며 양 끝단이 맞물리고, 상하 원형 밑면이 뚜껑처럼 덮여 원기둥이 완성됩니다.</li>
+            <li><strong>수학적 핵심:</strong> "원기둥 옆면 직사각형의 가로 길이는 밑면 원의 둘레와 같다"는 공식을 머릿속 상상이 아닌 손끝 조작으로 체감합니다.</li>
+        </ul>
+    </div>
+
+    <div class="section-title">
+        <span class="section-num">5</span>
+        <span>각뿔 입체: 육각뿔 (Hexagonal Pyramid) & 삼각뿔</span>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">
+                <span>육각뿔 (별 모양 전개도)</span>
+                <span class="tag tag-green">초등 6-1 각뿔</span>
+            </div>
+            <div class="img-compare">
+                <div class="img-box">
+                    <img src="pdf_images/hex_pyramid_net.jpg" alt="육각뿔 전개도">
+                    <div class="img-caption">▲ 별 모양 전개도 & 꼭짓점 링 끈</div>
+                </div>
+                <div class="img-box">
+                    <img src="pdf_images/hex_pyramid_done.jpg" alt="육각뿔 완성">
+                    <div class="img-caption">▲ 위로 당겨 꼭짓점이 한 점에 모임</div>
+                </div>
+            </div>
+            <ul class="desc-list">
+                <li><strong>전개도:</strong> 중앙 정육각형 밑면 둘레에 6개의 이등변삼각형이 붙어 있는 별 모양입니다.</li>
+                <li><strong>끈 연결:</strong> 6개 삼각형 꼭짓점에 구멍을 뚫고 하나의 끈을 고리(Loop)처럼 둘러 엮습니다.</li>
+                <li><strong>결과:</strong> 실을 위로 당기면 6개 삼각형 꼭짓점이 한 점으로 모이며 육각뿔이 완성됩니다.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-title">
+                <span>삼각뿔 (Tetrahedron)</span>
+                <span class="tag tag-blue">초등 6-1 각뿔</span>
+            </div>
+            <div class="img-compare">
+                <div class="img-box">
+                    <img src="pdf_images/tri_pyramid_net.jpg" alt="삼각뿔 전개도">
+                    <div class="img-caption">▲ 정삼각형 4개 결합 전개도</div>
+                </div>
+                <div class="img-box">
+                    <img src="pdf_images/tri_pyramid_done.jpg" alt="삼각뿔 완성">
+                    <div class="img-caption">▲ 당겨서 정사면체 완성</div>
+                </div>
+            </div>
+            <ul class="desc-list">
+                <li><strong>전개도:</strong> 4개의 정삼각형이 지그재그로 연결된 전개도입니다.</li>
+                <li><strong>끈 연결:</strong> 외곽 삼각형 꼭짓점을 통과하여 PULL 손잡이로 연결됩니다.</li>
+                <li><strong>결과:</strong> 가장 단순하면서도 견고한 정사면체 입체 구조를 가볍게 완성합니다.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>스트링 입체도형 DIY 가이드 | c:\work1123\도형교구_설명서.pdf</div>
+        <div>Page 3 of 4</div>
+    </div>
+</div>
+
+<!-- PAGE 4: DIY 제작 가이드 및 교육적 효과 -->
+<div class="page">
+    <div class="header">
+        <div class="header-left">DIY 제작 매뉴얼 & 교육 가이드</div>
+        <div class="header-right">가정 및 학교 실습 가이드</div>
+    </div>
+
+    <div class="section-title">
+        <span class="section-num">6</span>
+        <span>직접 만드는 4단계 DIY 제작 프로세스</span>
+    </div>
+
+    <div class="steps-grid">
+        <div class="step-card">
+            <div class="step-num">1</div>
+            <div class="step-title">도안 작도 및 재단</div>
+            <div class="step-text">
+                두꺼운 도화지(200g 이상)에 연필과 자를 이용해 전개도를 정확히 그립니다. 외곽선을 가위나 칼로 깔끔하게 오려냅니다.
+            </div>
+        </div>
+        <div class="step-card">
+            <div class="step-num">2</div>
+            <div class="step-title">칼선(스코어링) 넣기</div>
+            <div class="step-text">
+                <strong>가장 중요한 단계!</strong> 모든 접는 선(점선)에 칼등이나 다 쓴 볼펜으로 살짝 눌러 자국(Scoring)을 내어 부드럽게 꺾이게 만듭니다.
+            </div>
+        </div>
+        <div class="step-card">
+            <div class="step-num">3</div>
+            <div class="step-title">타공(구멍 뚫기)</div>
+            <div class="step-text">
+                1구 펀치나 송곳을 사용해 꼭짓점 및 모서리 연결 부위에서 3~5mm 안쪽 위치에 일정한 크기로 구멍을 뚫습니다.
+            </div>
+        </div>
+        <div class="step-card">
+            <div class="step-num">4</div>
+            <div class="step-title">스트링 꿰기 & 완성</div>
+            <div class="step-text">
+                매끄러운 면끈(지끈, 자수실)을 구멍 사이로 순서대로 통과시킵니다. 끈 끝부분에 종이 라벨('PULL')을 붙여 손잡이를 만듭니다.
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; margin: 10px 0;">
+        <div style="flex: 1.25;">
+            <div class="card" style="height: 100%;">
+                <div class="card-title">
+                    <span>💡 실패 없는 제작 핵심 팁 (Tip & Tech)</span>
+                    <span class="tag tag-blue">노하우</span>
+                </div>
+                <ul class="desc-list">
+                    <li><strong>종이 선택:</strong> 일반 복사지(80g)는 힘이 없어 흐물거립니다. 반드시 <strong>180g~250g 켄트지나 마분지</strong>를 사용해야 입체 형태가 각 잡혀 유지됩니다.</li>
+                    <li><strong>마찰력 줄이기:</strong> 털실보다는 표면이 매끄러운 <strong>코팅 면끈, 나일론 끈, 십자수 실</strong>을 사용해야 걸림 없이 스르륵 당겨집니다.</li>
+                    <li><strong>스케치북 바닥 고정:</strong> 전개도 밑면 하나를 스케치북이나 받침대 바닥에 풀로 고정해두면, 줄을 당길 때 도면 전체가 딸려오지 않고 제자리에서 안정적으로 솟아오릅니다.</li>
+                </ul>
+            </div>
+        </div>
+        <div style="flex: 0.75; text-align: center; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 5px; display: flex; flex-direction: column; align-items: center;">
+            <img src="pdf_images/stringing_detail.jpg" style="max-width: 100%; height: 110px; object-fit: contain; border-radius: 5px;" alt="스트링 꿰는 디테일">
+            <div class="img-caption">▲ 꼭짓점 구멍에 끈을 꿰는 섬세한 작업 과정</div>
+        </div>
+    </div>
+
+    <div class="section-title">
+        <span class="section-num">7</span>
+        <span>초등 수학 교육과정 연계 및 학습 활용법</span>
+    </div>
+
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th style="width: 20%;">학년 및 단원</th>
+                <th style="width: 25%;">학습 주제</th>
+                <th>스트링 교구 활용 교수·학습 효과</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>초등 5학년 2학기</strong></td>
+                <td>5단원. 직육면체와 정육면체</td>
+                <td>
+                    <span class="key-point">전개도 접기 예측</span> 전개도를 보고 어떤 면끼리 마주 보는지 먼저 추측한 뒤 줄을 당겨 직접 검증. 겨냥도의 보이지 않는 모서리와 면의 개념 체득.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>초등 6학년 1학기</strong></td>
+                <td>2단원. 각기둥과 각뿔</td>
+                <td>
+                    <span class="key-point">구성요소 탐구</span> 밑면의 다각형 모양에 따라 기둥과 뿔의 이름이 결정되는 원리 이해. 옆면이 사각형(기둥)인지 삼각형(뿔)인지 즉시 구별.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>초등 6학년 2학기</strong></td>
+                <td>6단원. 원기둥, 원뿔, 구</td>
+                <td>
+                    <span class="key-point">원주와 사각형 가로의 일치</span> 직사각형이 둥글게 말려 원통이 되는 변환을 보며 2 × π × r = (가로 길이) 관계를 암기가 아닌 시각적 직관으로 이해.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="highlight-box" style="margin-top: 8px;">
+        <strong>👨‍👩‍👧 부모님 및 선생님을 위한 지도 멘트:</strong><br>
+        "이 면을 접으면 어떤 면이랑 만날까? 선을 당기기 전에 먼저 손가락으로 가리켜 볼래?"라고 유도한 후, 줄을 스르륵 당겨 직접 확인하게 해주세요. 스스로 가설을 세우고 손으로 검증하는 과정에서 아이들의 **공간추론능력(Spatial Reasoning)**과 수학적 자신감이 폭발적으로 성장합니다.
+    </div>
+
+    <div class="footer">
+        <div>스트링 입체도형 DIY 가이드 | c:\work1123\도형교구_설명서.pdf</div>
+        <div>Page 4 of 4</div>
+    </div>
+</div>
+
+</body>
+</html>
